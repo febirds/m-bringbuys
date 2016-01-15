@@ -1,0 +1,131 @@
+/* GENERAL */
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  @include color($primary-color, 0.7);
+
+  &.search-open {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+
+  & > .background-color {
+    position: fixed;
+    z-index: -2;
+  }
+}
+
+%lato {
+  font-family: 'Lato', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+%clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+%stretch {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+%button {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-moz-focus-inner {
+    padding: 0;
+    border: none;
+  }
+}
+
+.post-add-btn {
+  display: none;
+}
+
+.background-image,
+.background-color,
+.body-background-color {
+  z-index: -1;
+  @extend %stretch;
+}
+
+.background-image,
+.background-color {
+  position: absolute;
+}
+
+.background-image {
+  background-position: center;
+  background-size: cover;
+}
+
+.body-background-color {
+  position: fixed;
+}
+
+.vg-bg-picker-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.horizontal-line {
+  width: 260px;
+  height: 1px;
+  @include bg($black, 0.25);
+
+  .light-background & {
+    @include bg($primary-color, 0.25);
+  }
+
+  @include query($mobile-5) {
+    width: auto;
+  }
+}
+
+.container {
+  a {
+    img {
+      border: none;
+    }
+  }
+}
+
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+
+  .blog-page & {
+    max-width: 976px;
+  }
+}
+
+.wrap-inner {
+  .common-page & {
+    max-width: 650px;
+    margin: 36px auto;
+  }
+}

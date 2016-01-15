@@ -1,0 +1,91 @@
+/* HEADER */
+.header {
+  @include bg($primary-color);
+
+  .wrap {
+    @extend %clearfix;
+    padding: 26px 20px 29px;
+    min-height: 65px;
+
+    .flexbox & {
+      @include display(flex);
+      @include flex-wrap(wrap);
+      @include justify-content(flex-end);
+    }
+
+    .header-left {
+      margin-top: 10px;
+
+      .flexbox & {
+        max-width: 100%;
+        @include flex(1 0 auto);
+      }
+
+      .no-flexbox & {
+        float: left;
+      }
+
+      .header-title,
+      .header-slogan {
+        line-height: 1;
+        @include color($black, 0.53);
+
+        @include query($tablet-4) {
+          margin-right: 40px;
+        }
+
+        @include query($tablet-4) {
+          .search-enabled & {
+            margin-right: 190px;
+          }
+        }
+
+        @include query($mobile-1) {
+          .search-enabled & {
+            margin-right: 60px;
+          }
+        }
+      }
+
+      .header-title {
+        @extend %lato;
+        font-weight: 700;
+        font-size: 34px;
+
+        &,
+        a {
+          text-decoration: none;
+          @include color($secondary-color);
+        }
+
+        a:hover {
+          @include color($secondary-color, 0.6);
+        }
+      }
+
+      .header-slogan {
+        position: relative;
+        top: 2px;
+        font-size: 18px;
+      }
+    }
+
+    .header-right {
+      max-width: 100%;
+      text-align: right;
+      margin-left: 15px;
+
+      @include query($tablet-4) {
+        margin-left: 0;
+      }
+
+      .no-flexbox & {
+        float: right;
+      }
+
+      .header-bottom {
+        margin-top: 10px;
+      }
+    }
+  }
+}
