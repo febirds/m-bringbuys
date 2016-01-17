@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * 后台控制器
@@ -93,6 +95,22 @@ public class AdminController {
             userService.delUserMessage(id);
         }
         return "desktop";
+    }
+
+    @RequestMapping(value = "/content", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+    public @ResponseBody
+    Object toContent(HttpServletRequest request, HttpServletResponse response, Model model) {
+        /*String userName = request.getParameter("user_name");
+        String password = request.getParameter("password");
+        AdminUser user = service.checkAdminUser(userName, password);*/
+        JSONObject object = new JSONObject();
+        /*if (user != null) {
+            request.getSession().setAttribute("AdminUser", user);
+            object.put("success", true);
+        } else {
+            object.put("success", false);
+        }*/
+        return "Edicy.jQuery(function($) {var contentArea = $('.edy-ca[data-name=\"right\"][data-page-id=\"1918190\"][data-page-type=\"Page\"]');contentArea.find('.edy-content-elements').append('<div class=\\\"partial edy-partial-view edy-content-element\\\" data-delete-path=\\\"/admin/content/partials/3905500\\\" data-partial-id=\\\"3905500\\\" data-relocate-path=\\\"/admin/content/partials/3905500/relocate\\\" id=\\\"partial_3905500\\\">\\n  <div class=\\\"edy-partial-draghandles edy-partial-draghandles-visible\\\"><div class=\\\"edy-partial-draghandle edy-partial-draghandle-top\\\"><\\/div><div class=\\\"edy-partial-draghandle edy-partial-draghandle-right\\\"><\\/div><div class=\\\"edy-partial-draghandle edy-partial-draghandle-bottom\\\"><\\/div><div class=\\\"edy-partial-draghandle edy-partial-draghandle-left\\\"><\\/div><\\/div>\\n  <div class=\\\"text_partial edy-partial-content-view edy-textpartial-view edy-texteditor-view edy-accepts-assets edy-accepts-embeds\\\" data-content-type=\\\"text\\\" data-placeholder=\\\"Go on, start typing...\\\" data-textpartial-id=\\\"3384285\\\" id=\\\"text_partial_3384285\\\">\\n<\\/div>\\n<\\/div>');contentArea.find('.edy-content-elements').trigger('partials:create');new Edicy.PartialView({el: $('#partial_3905500'), focus: true}).render();});";
     }
 
 }
