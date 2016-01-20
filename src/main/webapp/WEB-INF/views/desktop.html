@@ -11,105 +11,40 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico" type="image/ico">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/public/wysihtml/stylesheets/main.min.css">
-    <link rel="stylesheet" href="/public/edicy/edicy-common.css">
-    <link rel="stylesheet" href="/public/edicy/edicy-editor.css">
-    <link rel="stylesheet" href="/public/edicy/edicy-tools.css">
     <link rel="stylesheet" href="/public/amazeui/assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/public/wysihtml/javascripts/modernizr.js"></script>
-    <script src='/public/edicy/modernizr-edicy.js'></script>
+
+    <style type="text/css">
+        div {
+            width: 100%;
+        }
+    </style>
 </head>
 
-<body class="editmode body-background-image js-body">
-
-
-<main class="container" role="main">
-    <div class="header top">
-        <div class="logo top">
-            <a href="##" class="am-icon-btn am-primary am-icon-pencil js-bgpicker-body-settings"
-               data-bg-image="" data-bg-image-sizes="" data-bg-color="" data-bg-color-data></a>
-        </div>
-
-        <div style="float: right" class="logo top">
-            <a href="##" class="bringbuys-area-add am-icon-btn am-primary am-icon-plus"></a>
-        </div>
+<body style="overflow-x: hidden">
+<div class="am-projects" style="background:#444;height:40px">
+    <div class="amz-container am-cf">
+        <nav class="am-projects-nav"><a href="http://amazeui.org" class="active">Web</a> <a href="http://t.amazeui.org/"
+                                                                                            target="_blank">Touch</a>
+        </nav>
+        <nav class="am-projects-misc"><a href="http://amazeui.github.io/cases/" target="_blank" style="font-weight:400">案例</a>
+            <a href="http://ask.amazeui.org/" target="_blank"><span class="am-icon-comments-o"></span> 社区</a></nav>
     </div>
+</div>
+<div class="am-g">
+    <div style="height: 100px" class="am-u-lg-2"></div>
+    <div class="am-u-lg-8">
+        <h1>媒体内容</h1>
+        <script id="editor" type="text/plain" style="width:100%;height:800px;"></script>
+    </div>
+    <div style="height: 100px" class="am-u-lg-2"></div>
+</div>
 
-    <section class="content-area bringbuys-content-area">
-        <div class="content-body content-area" data-search-indexing-allowed="true">
-            <div class="edy-ca edy-ca-sortable edy-ca-empty " data-name="right" data-page-id="1918190"
-                 data-page-type="Page"
-                 data-partial-create-attribs="{&quot;name&quot;:&quot;right&quot;,&quot;language_id&quot;:459948,&quot;page_id&quot;:1918190,&quot;page_type&quot;:&quot;Page&quot;}"
-                 data-partial-create-path="/admin/content">
-                <div class="edy-content-elements">
-                </div>
+<script type="text/javascript" charset="utf-8" src="/js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/public/amazeui/assets/js/amazeui.min.js"></script>
 
-                <div class="edy-ca-empty-placeholder">
-                    <div class="edy-empty-bordered edy-reset">
-                        <div class="edy-empty-header edy-ca-empty-normal">Drag some content here</div>
-                        <div class="edy-empty-header edy-ca-empty-over">Drop it here</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-</main>
-
-
-<script src="/js/jquery.min.js"></script>
-<script src="/public/wysihtml/javascripts/application.js"></script>
-<script src="/public/edicy/picturefill.js"></script>
-
-<#include 'layouts/toolsbar.html'/>
-<script src='/public/edicy/edicy-core.js'></script>
-<script src='/public/edicy/i18n.js'></script>
-<script src='/public/edicy/edicy-common.js'></script>
-<script src='/public/edicy/edicy-editor.js'></script>
-<script src='/public/edicy/edicy-tools.js'></script>
-<script>
-    // VARIABLES FOR THE CUSTOM DATA.
-    /*{% if edicy-tools == "article" %}
-     // Article pages custom data variable.
-     var articleData = new Edicy.CustomData({
-     type: 'article',
-     id: '{{ article.id }}'
-     });
-     {% else %}
-     // Article pages custom data variable.
-     var pageData = new Edicy.CustomData({
-     type: 'page',
-     id: '{{ page.id }}'
-     });*/
-
-    // Front page header banner background picker.
-    var bodyBg = new Edicy.BgPicker($('.js-bgpicker-body-settings'), {
-        picture: true,
-        target_width: 600,
-        color: true,
-        showAlpha: true,
-
-        preview: function (data) {
-            site.bodyBgPreview(data, '.js-body');
-        },
-
-        commit: function (data) {
-            site.bodyBgCommit(data, 'body_bg');
-        }
-    });
-
-    /*// Article background image save logic
-     var pictureDropArea = new Edicy.ImgDropArea($('.js-post-cover-inner'), {
-     positionable: true,
-     target_width: 800,
-
-     change: function(data) {
-     Edicy.articles.currentArticle.setData({
-     'post_image': data
-     });
-     }
-     });*/
-</script>
+<script type="text/javascript" charset="utf-8" src="/public/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/public/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/public/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/core.js"></script>
 </body>
 </html>

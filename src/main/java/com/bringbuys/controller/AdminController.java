@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * 后台控制器
@@ -97,20 +98,13 @@ public class AdminController {
         return "desktop";
     }
 
-    @RequestMapping(value = "/content", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+    @RequestMapping(value = "/content", method = RequestMethod.POST, produces = "text/javascript; charset=UTF-8")
     public @ResponseBody
     Object toContent(HttpServletRequest request, HttpServletResponse response, Model model) {
-        /*String userName = request.getParameter("user_name");
-        String password = request.getParameter("password");
-        AdminUser user = service.checkAdminUser(userName, password);*/
-        JSONObject object = new JSONObject();
-        /*if (user != null) {
-            request.getSession().setAttribute("AdminUser", user);
-            object.put("success", true);
-        } else {
-            object.put("success", false);
-        }*/
-        return "Edicy.jQuery(function($) {var contentArea = $('.edy-ca[data-name=\"right\"][data-page-id=\"1918190\"][data-page-type=\"Page\"]');contentArea.find('.edy-content-elements').append('<div class=\\\"partial edy-partial-view edy-content-element\\\" data-delete-path=\\\"/admin/content/partials/3905500\\\" data-partial-id=\\\"3905500\\\" data-relocate-path=\\\"/admin/content/partials/3905500/relocate\\\" id=\\\"partial_3905500\\\">\\n  <div class=\\\"edy-partial-draghandles edy-partial-draghandles-visible\\\"><div class=\\\"edy-partial-draghandle edy-partial-draghandle-top\\\"><\\/div><div class=\\\"edy-partial-draghandle edy-partial-draghandle-right\\\"><\\/div><div class=\\\"edy-partial-draghandle edy-partial-draghandle-bottom\\\"><\\/div><div class=\\\"edy-partial-draghandle edy-partial-draghandle-left\\\"><\\/div><\\/div>\\n  <div class=\\\"text_partial edy-partial-content-view edy-textpartial-view edy-texteditor-view edy-accepts-assets edy-accepts-embeds\\\" data-content-type=\\\"text\\\" data-placeholder=\\\"Go on, start typing...\\\" data-textpartial-id=\\\"3384285\\\" id=\\\"text_partial_3384285\\\">\\n<\\/div>\\n<\\/div>');contentArea.find('.edy-content-elements').trigger('partials:create');new Edicy.PartialView({el: $('#partial_3905500'), focus: true}).render();});";
+        String name = request.getParameter("name");
+        String partials_id = request.getParameter("partials_id");
+        String page_id = request.getParameter("page_id");
+        return "Edicy.jQuery(function($) {debugger;var contentArea = $('.edy-ca[data-name=\""+name+"\"][data-page-id=\""+page_id+"\"][data-page-type=\"Page\"]');contentArea.find('.edy-content-elements').append('<div class=\\\"partial edy-partial-view edy-content-element\\\" data-delete-path=\\\"/admin/content/partials/"+partials_id+"\\\" data-partial-id=\\\""+partials_id+"\\\" data-relocate-path=\\\"/admin/content/partials/"+partials_id+"/relocate\\\" id=\\\"partial_"+partials_id+"\\\">\\n  <div class=\\\"edy-partial-draghandles edy-partial-draghandles-visible\\\"><div class=\\\"edy-partial-draghandle edy-partial-draghandle-top\\\"><\\/div><div class=\\\"edy-partial-draghandle edy-partial-draghandle-right\\\"><\\/div><div class=\\\"edy-partial-draghandle edy-partial-draghandle-bottom\\\"><\\/div><div class=\\\"edy-partial-draghandle edy-partial-draghandle-left\\\"><\\/div><\\/div>\\n  <div class=\\\"text_partial edy-partial-content-view edy-textpartial-view edy-texteditor-view edy-accepts-assets edy-accepts-embeds\\\" data-content-type=\\\"text\\\" data-placeholder=\\\"Go on, start typing...\\\" data-textpartial-id=\\\""+partials_id+"\\\" id=\\\"text_partial_"+partials_id+"\\\">\\n<\\/div>\\n<\\/div>');contentArea.find('.edy-content-elements').trigger('partials:create');new Edicy.PartialView({el: $('#partial_"+partials_id+"'), focus: true}).render();});";
     }
 
 }
