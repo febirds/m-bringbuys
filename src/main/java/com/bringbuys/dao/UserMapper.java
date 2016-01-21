@@ -1,14 +1,10 @@
 package com.bringbuys.dao;
 
 import com.bringbuys.bean.User;
-
-import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
 
-    int insert(User record);
+    User selectByUserName(@Param("userName") String userName, @Param("password") String password);
 
-    int deleteById(Integer id);
-
-    List<User> selectByConn(User user);
 }

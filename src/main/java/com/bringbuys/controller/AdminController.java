@@ -59,52 +59,13 @@ public class AdminController {
         return object;
     }
 
-    @RequestMapping(value="/userMessage",method=RequestMethod.GET)
-    public Object queryUserMessageList(HttpServletRequest request) {
-        AdminUser user = (AdminUser) request.getSession().getAttribute("AdminUser");
-        if (user != null) {
-            String userName = request.getParameter("user_name");
-            String startTime = request.getParameter("start_time");
-            String endTime = request.getParameter("end_time");
-            String startPage = request.getParameter("start_page");
-            String countPage = request.getParameter("countPage");
-            int start = 1, count = 10;
-            if (startPage != null) {
-                start = Integer.parseInt(startPage);
-            }
-            if (countPage != null) {
-                count = Integer.parseInt(countPage);
-            }
-            ModelAndView mv = new ModelAndView();
-            PageInfo page = userService.queryUsersByConn(start, count, userName, startTime, endTime);
-            mv.addObject("users", page);
-            mv.setViewName("desktop");
-            return mv;
-        }
-        return null;
-    }
-
-    @RequestMapping(value="/delUserMessage",method=RequestMethod.POST)
-    public Object deleteUserMessageByID(HttpServletRequest request) {
-        AdminUser user = (AdminUser) request.getSession().getAttribute("AdminUser");
-        if (user != null) {
-            Integer id = null;
-            String idStr = request.getParameter("id");
-            if (idStr != null) {
-                id = Integer.parseInt(idStr);
-            }
-            userService.delUserMessage(id);
-        }
-        return "desktop";
-    }
-
     @RequestMapping(value = "/content", method = RequestMethod.POST, produces = "text/javascript; charset=UTF-8")
     public @ResponseBody
     Object toContent(HttpServletRequest request, HttpServletResponse response, Model model) {
         String name = request.getParameter("name");
         String partials_id = request.getParameter("partials_id");
         String page_id = request.getParameter("page_id");
-        return "Edicy.jQuery(function($) {debugger;var contentArea = $('.edy-ca[data-name=\""+name+"\"][data-page-id=\""+page_id+"\"][data-page-type=\"Page\"]');contentArea.find('.edy-content-elements').append('<div class=\\\"partial edy-partial-view edy-content-element\\\" data-delete-path=\\\"/admin/content/partials/"+partials_id+"\\\" data-partial-id=\\\""+partials_id+"\\\" data-relocate-path=\\\"/admin/content/partials/"+partials_id+"/relocate\\\" id=\\\"partial_"+partials_id+"\\\">\\n  <div class=\\\"edy-partial-draghandles edy-partial-draghandles-visible\\\"><div class=\\\"edy-partial-draghandle edy-partial-draghandle-top\\\"><\\/div><div class=\\\"edy-partial-draghandle edy-partial-draghandle-right\\\"><\\/div><div class=\\\"edy-partial-draghandle edy-partial-draghandle-bottom\\\"><\\/div><div class=\\\"edy-partial-draghandle edy-partial-draghandle-left\\\"><\\/div><\\/div>\\n  <div class=\\\"text_partial edy-partial-content-view edy-textpartial-view edy-texteditor-view edy-accepts-assets edy-accepts-embeds\\\" data-content-type=\\\"text\\\" data-placeholder=\\\"Go on, start typing...\\\" data-textpartial-id=\\\""+partials_id+"\\\" id=\\\"text_partial_"+partials_id+"\\\">\\n<\\/div>\\n<\\/div>');contentArea.find('.edy-content-elements').trigger('partials:create');new Edicy.PartialView({el: $('#partial_"+partials_id+"'), focus: true}).render();});";
+        return "";
     }
 
 }

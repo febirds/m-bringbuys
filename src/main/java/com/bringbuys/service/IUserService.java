@@ -5,9 +5,9 @@ import com.github.pagehelper.PageInfo;
 
 public interface IUserService {
 
-    PageInfo queryUsersByConn(int startPage, int count, String userName, String startTime, String endTime);
+    /*PageInfo queryUsersByConn(int startPage, int count, String userName, String startTime, String endTime);
 
-    int saveUserMessage(User user);
+    int saveUserMessage(User user);*/
 
-    int delUserMessage(Integer id);
+    User checkUser(String userName, String password);
 }

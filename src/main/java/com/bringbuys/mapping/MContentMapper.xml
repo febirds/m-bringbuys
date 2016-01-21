@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bringbuys.dao.MContentMapper" >
+  <resultMap id="BaseResultMap" type="com.bringbuys.bean.MContent" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="linkurl" property="phone" jdbcType="VARCHAR" />
+    <result column="ctime" property="ctime" jdbcType="DATE" />
+    <result column="isUse" property="userType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, linkurl, nick_name
+  </sql>
+  <insert id="insertMContent" parameterType="com.bringbuys.bean.MContent">
+    insert into mcontent (id,  user_name, nick_name, linkurl, ctime)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{linkurl,jdbcType=VARCHAR},
+      #{ctime,jdbcType=VARCHAR})
+  </insert>
+</mapper>

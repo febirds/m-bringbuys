@@ -45,7 +45,7 @@
         <br>
         <br>
 
-        <form method="post" class="am-form" action="/admin/signin">
+        <form method="post" class="am-form" action="/users/signin">
             <label for="user_name">用户名:</label>
             <input type="text" name="user_name" id="user_name" value="">
             <br>

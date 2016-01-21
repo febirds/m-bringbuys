@@ -7,28 +7,30 @@ public class User {
 
     private String userName;
 
+    private String nickName;
+
+    private String password;
+
     private String phone;
 
     private String email;
 
-    private String site;
-
-    private String message;
-
-    private String userType;
-
     private Date ctime;
 
-    private String startTime;
-
-    private String endTime;
-
-    public String getUserType() {
-        return userType;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Date getCtime() {
@@ -37,22 +39,6 @@ public class User {
 
     public void setCtime(Date ctime) {
         this.ctime = ctime;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
     }
 
     public String getPhone() {
@@ -69,22 +55,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getSite() {
-        return site;
-    }
-
-    public void setSite(String site) {
-        this.site = site;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public Integer getId() {
