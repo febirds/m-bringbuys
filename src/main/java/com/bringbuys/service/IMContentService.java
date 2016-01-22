@@ -7,6 +7,8 @@ import com.bringbuys.bean.MContent;
  */
 public interface IMContentService {
 
-    int insertMContent(MContent content);
+    int saveMContent(MContent content);
+
+    MContent getMcontent(int id);
 
 }

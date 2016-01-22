@@ -2,7 +2,11 @@ package com.bringbuys.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bringbuys.bean.Constant;
+import com.bringbuys.bean.MContent;
+import com.bringbuys.bean.User;
+import com.bringbuys.service.IMContentService;
 import com.bringbuys.util.Base64;
+import com.bringbuys.util.MD5;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.util.Date;
@@ -27,6 +32,8 @@ import java.util.Map;
 @RequestMapping("/content")
 public class MContentController {
 
+    @Resource
+    private IMContentService contentService;
     private final Logger logger = LoggerFactory.getLogger(MContentController.class);
     private Configuration freemarker_cfg = null;
 
@@ -34,24 +41,40 @@ public class MContentController {
     public
     @ResponseBody
     Object genContentHtml(HttpServletRequest request, Model model) {
-        String content = request.getParameter("content");
-        String userName = request.getParameter("user_name");
-        String nickName = request.getParameter("nick_name");
-        Date ctime = new Date();
         JSONObject object = new JSONObject();
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("content", content);
-        map.put("userName", userName);
-        map.put("nickName", nickName);
-        map.put("ctime", ctime);
-        this.geneHtmlFile("content.ftl", map, Base64.getBase64(userName), ctime.getTime()+".html");
-        object.put("success", true);
+        try {
+            String title = request.getParameter("title");
+            String content = request.getParameter("content");
+            User user = (User) request.getSession().getAttribute("User");
+            Date ctime = new Date();
+            String path = MD5.GetMD5Code(user.getUserName()==null?"public":user.getUserName());
+            String linkurl = "/static/" + path + "/" + Base64.getBase64(path + ctime.getTime()) + ".html";
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("title", title);
+            map.put("auther", user.getNickName());
+            map.put("ctime", ctime);
+            map.put("content", content);
+            this.geneHtmlFile(request, "content.ftl", map, path, Base64.getBase64(path + ctime.getTime()) + ".html");
+            MContent mContent = new MContent();
+            mContent.setTitle(title);
+            mContent.setCtime(ctime);
+            mContent.setLinkurl(linkurl);
+            mContent.setAuther(user.getNickName());
+            mContent.setUserName(user.getUserName());
+            mContent.setContent(content);
+            contentService.saveMContent(mContent);
+            object.put("success", true);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            object.put("success", false);
+        }
         return object;
     }
 
-    private boolean geneHtmlFile(String templateFileName, Map propMap, String htmlFilePath, String htmlFileName) {
-        //@todo 从配置中取得要静态文件存放的根路径:需要改为自己的属性类调用
-        String sRootDir = Constant.HTML_FILE_PATH;
+
+    private boolean geneHtmlFile(HttpServletRequest request, String templateFileName, Map propMap,
+                                 String htmlFilePath, String htmlFileName) {
+        String sRootDir = request.getSession().getServletContext().getRealPath("/") + Constant.HTML_FILE_PATH;
 
         try {
             Template t = getFreeMarkerCFG().getTemplate(templateFileName);
@@ -79,7 +102,7 @@ public class MContentController {
         if (null == freemarker_cfg) {
             freemarker_cfg = new Configuration();
 
-            freemarker_cfg.setClassForTemplateLoading(this.getClass(), "templates/");
+            freemarker_cfg.setClassForTemplateLoading(this.getClass(), "/templates");
         }
 
         return freemarker_cfg;

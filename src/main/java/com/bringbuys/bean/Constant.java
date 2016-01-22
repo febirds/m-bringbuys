@@ -5,6 +5,6 @@ package com.bringbuys.bean;
  */
 public class Constant {
 
-    public static final String HTML_FILE_PATH = "/static";
+    public static final String HTML_FILE_PATH = "/static/";
 
 }

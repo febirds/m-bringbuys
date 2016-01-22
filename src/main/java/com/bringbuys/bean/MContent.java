@@ -8,17 +8,44 @@ import java.util.Date;
 public class MContent {
 
     private int id;
+    private String title;
     private String linkurl;
     private Date ctime;
     private int isUse;
-    private String nickName;
+    private String userName;
+    private String auther;
+    private String content;
 
-    public String getNickName() {
-        return nickName;
+    public String getContent() {
+        return content;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuther() {
+        return auther;
+    }
+
+    public void setAuther(String auther) {
+        this.auther = auther;
     }
 
     public int getId() {

@@ -9,4 +9,6 @@ public interface MContentMapper {
 
     int insertMContent(MContent content);
 
+    MContent selectMContentById(int id);
+
 }

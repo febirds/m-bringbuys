@@ -4,16 +4,27 @@
   <resultMap id="BaseResultMap" type="com.bringbuys.bean.MContent" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="linkurl" property="phone" jdbcType="VARCHAR" />
+    <result column="auther" property="auther" jdbcType="VARCHAR" />
+    <result column="linkurl" property="linkurl" jdbcType="VARCHAR" />
     <result column="ctime" property="ctime" jdbcType="DATE" />
-    <result column="isUse" property="userType" jdbcType="INTEGER" />
+    <result column="isUse" property="isUse" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_name, linkurl, nick_name
+    id, user_name, linkurl, auther, ctime, isUse
+  </sql>
+  <sql id="full_Column_List" >
+    id, user_name, linkurl, auther, ctime, isUse, content
   </sql>
   <insert id="insertMContent" parameterType="com.bringbuys.bean.MContent">
-    insert into mcontent (id,  user_name, nick_name, linkurl, ctime)
-    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{linkurl,jdbcType=VARCHAR},
-      #{ctime,jdbcType=VARCHAR})
+    insert into mcontent (id,  user_name, auther, linkurl, ctime, content)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{auther,jdbcType=VARCHAR}, #{linkurl,jdbcType=VARCHAR},
+      #{ctime,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR})
   </insert>
+  <select id="selectMContentById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="full_Column_List" />
+    from mcontent
+    where id = #{id} and isUse=1
+  </select>
 </mapper>

@@ -67,8 +67,23 @@
 <script type="text/javascript" charset="utf-8" src="/public/amazeui/assets/js/amazeui.min.js"></script>
 
 <script type="text/javascript" charset="utf-8" src="/public/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="/public/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/public/ueditor/ueditor.all.js"></script>
 <script type="text/javascript" charset="utf-8" src="/public/ueditor/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript" charset="utf-8" src="/js/core.js"></script>
+<script>
+    $(function(){
+        var ue = UE.getEditor('editor');
+        ue.ready(function() {
+            ue.setContent('${m.content!''}');
+        });
+        $("#bring-save").bind("click", function () {
+            var content = ue.getContent();
+            $.post("/content/toHtml", {content: content, user_name:user_name, nick_name:nick_name}, function (response) {
+                if (response.success) {
+                    alert("保存成功！");
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
