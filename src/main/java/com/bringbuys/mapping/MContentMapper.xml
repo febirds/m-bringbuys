@@ -17,9 +17,9 @@
     id, user_name, linkurl, auther, ctime, isUse, content
   </sql>
   <insert id="insertMContent" parameterType="com.bringbuys.bean.MContent">
-    insert into mcontent (id,  user_name, auther, linkurl, ctime, content)
+    insert into mcontent (id,  user_name, auther, linkurl, ctime, utime, content)
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{auther,jdbcType=VARCHAR}, #{linkurl,jdbcType=VARCHAR},
-      #{ctime,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR})
+      #{ctime,jdbcType=VARCHAR}, #{utime,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR})
   </insert>
   <select id="selectMContentById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select

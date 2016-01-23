@@ -1,6 +1,5 @@
 package com.bringbuys.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.bringbuys.bean.MContent;
 import com.bringbuys.service.IMContentService;
 import org.slf4j.Logger;
@@ -35,14 +34,6 @@ public class DesktopController {
         }
         mv.setViewName("desktop");
         return mv;
-    }
-
-
-
-    @RequestMapping("/logout")
-    public String toLogout(HttpServletRequest request, Model model) {
-        request.getSession().removeAttribute("AdminUser");
-        return "login";
     }
 
 }

@@ -11,7 +11,9 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico" type="image/ico">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/public/amazeui/assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="/public/wysihtml/css/style.css">
 </head>
 
 <body style="overflow-x: hidden">
@@ -23,19 +25,7 @@
         <ul class="am-nav am-nav-pills am-topbar-nav">
             <li class="am-active"><a href="#">首页</a></li>
             <li><a href="#">项目</a></li>
-            <li class="am-dropdown" data-am-dropdown=""><a class="am-dropdown-toggle" data-am-dropdown-toggle=""
-                                                           href="javascript:;">下拉 <span
-                    class="am-icon-caret-down"></span></a>
-                <ul class="am-dropdown-content">
-                    <li class="am-dropdown-header">标题</li>
-                    <li><a href="#">1. 去月球</a></li>
-                    <li class="am-active"><a href="#">2. 去火星</a></li>
-                    <li><a href="#">3. 还是回地球</a></li>
-                    <li class="am-disabled"><a href="#">4. 下地狱</a></li>
-                    <li class="am-divider"></li>
-                    <li><a href="#">5. 桥头一回首</a></li>
-                </ul>
-            </li>
+            <li><a id="bring-text-add" href="#">新建文本</a></li>
         </ul>
         <form class="am-topbar-form am-topbar-left am-form-inline" role="search">
             <div class="am-form-group"><input type="text" class="am-form-field am-input-sm" placeholder="搜索"></div>
@@ -55,35 +45,30 @@
         </div>
     </div>
 </header>
-<div class="am-g">
+<div class="bring-am-g am-g">
     <div style="height: 100px" class="am-u-lg-2"></div>
-    <div class="am-u-lg-8">
-        <script id="editor" type="text/plain" style="width:100%;height:800px;"></script>
-    </div>
+    <#include "text.ftl">
     <div style="height: 100px" class="am-u-lg-2"></div>
+    <input type="hidden" name="id" value="${id!''}">
 </div>
 
 <script type="text/javascript" charset="utf-8" src="/js/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="/public/amazeui/assets/js/amazeui.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/public/wysihtml/dist/wysihtml-toolbar.js"></script>
+<script type="text/javascript" charset="utf-8" src="/public/wysihtml/parser_rules/parse_rule.js"></script>
+<script type="text/javascript" charset="utf-8" src="/public/wysihtml/dist/main.js"></script>
 
-<script type="text/javascript" charset="utf-8" src="/public/ueditor/ueditor.config.js"></script>
+<#--<script type="text/javascript" charset="utf-8" src="/public/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="/public/ueditor/ueditor.all.js"></script>
 <script type="text/javascript" charset="utf-8" src="/public/ueditor/lang/zh-cn/zh-cn.js"></script>
-<script>
+<script type="text/javascript" charset="utf-8">
     $(function(){
         var ue = UE.getEditor('editor');
         ue.ready(function() {
             ue.setContent('${m.content!''}');
         });
-        $("#bring-save").bind("click", function () {
-            var content = ue.getContent();
-            $.post("/content/toHtml", {content: content, user_name:user_name, nick_name:nick_name}, function (response) {
-                if (response.success) {
-                    alert("保存成功！");
-                }
-            });
-        });
     });
-</script>
+</script>-->
+<script type="text/javascript" charset="utf-8" src="/js/core.js"></script>
 </body>
 </html>

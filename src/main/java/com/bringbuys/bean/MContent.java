@@ -11,10 +11,19 @@ public class MContent {
     private String title;
     private String linkurl;
     private Date ctime;
+    private Date utime;
     private int isUse;
     private String userName;
     private String auther;
     private String content;
+
+    public Date getUtime() {
+        return utime;
+    }
+
+    public void setUtime(Date utime) {
+        this.utime = utime;
+    }
 
     public String getContent() {
         return content;

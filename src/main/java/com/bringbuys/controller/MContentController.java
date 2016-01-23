@@ -45,22 +45,28 @@ public class MContentController {
         try {
             String title = request.getParameter("title");
             String content = request.getParameter("content");
+            String id = request.getParameter("id");
             User user = (User) request.getSession().getAttribute("User");
-            Date ctime = new Date();
-            String path = MD5.GetMD5Code(user.getUserName()==null?"public":user.getUserName());
-            String linkurl = "/static/" + path + "/" + Base64.getBase64(path + ctime.getTime()) + ".html";
+            Date ctime = null;
+            String path = "", linkurl = "";
+            MContent mContent = null;
+            if (id != null && !"".equals(id)) {
+                mContent = contentService.getMcontent(Integer.parseInt(id));
+                mContent.setUtime(new Date());
+            } else {
+                ctime = new Date();
+                path = MD5.GetMD5Code(user.getUserName()==null?"public":user.getUserName());
+                linkurl = "/static/" + path + "/" + Base64.getBase64(path + ctime.getTime()) + ".html";
+                mContent = new MContent();
+                mContent.setLinkurl(linkurl);
+                mContent.setAuther(user.getNickName());
+                mContent.setCtime(ctime);
+                mContent.setUserName(user.getUserName());
+            }
             Map<String, Object> map = new HashMap<String, Object>();
-            map.put("title", title);
-            map.put("auther", user.getNickName());
-            map.put("ctime", ctime);
-            map.put("content", content);
+            map.put("m", mContent);
             this.geneHtmlFile(request, "content.ftl", map, path, Base64.getBase64(path + ctime.getTime()) + ".html");
-            MContent mContent = new MContent();
             mContent.setTitle(title);
-            mContent.setCtime(ctime);
-            mContent.setLinkurl(linkurl);
-            mContent.setAuther(user.getNickName());
-            mContent.setUserName(user.getUserName());
             mContent.setContent(content);
             contentService.saveMContent(mContent);
             object.put("success", true);

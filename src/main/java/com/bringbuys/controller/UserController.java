@@ -52,4 +52,10 @@ public class UserController {
         return object;
     }
 
+    @RequestMapping("/logout")
+    public String toLogout(HttpServletRequest request, Model model) {
+        request.getSession().removeAttribute("User");
+        return "/";
+    }
+
 }
