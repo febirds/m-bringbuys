@@ -25,7 +25,7 @@ public class DesktopController {
     private final Logger logger = LoggerFactory.getLogger(MContentController.class);
 
     @RequestMapping("")
-    public Object toDesktop(HttpServletRequest request, Model model) {
+    public Object toDesktop(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         String mid = request.getParameter("m");
         if (mid != null) {

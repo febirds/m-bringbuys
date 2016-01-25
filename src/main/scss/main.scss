@@ -1,9 +1,27 @@
-$am-g-marginTop : 80px;
+$am-g-margin : 80px;
+$am-g-padding : 80px;
+$broder-height : 200px;
+
+.bring-hide {
+    display: none;
+}
+
+.bring-broder-height {
+    height: $broder-height;
+}
 
 .bring-am-g {
-    margin-top: $am-g-marginTop!important;
+    margin-top: $am-g-margin!important;
+    margin-bottom: $am-g-margin!important;
+    padding: $am-g-padding $am-g-padding $am-g-padding $am-g-padding!important;
 }
 
 .bring-dragable {
     position: absolute;
+}
+
+.bring-darg-anchor {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
 }

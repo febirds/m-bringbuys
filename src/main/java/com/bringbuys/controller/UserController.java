@@ -38,7 +38,7 @@ public class UserController {
 
     @RequestMapping(value = "/signin", method = RequestMethod.POST)
     public @ResponseBody
-    Object toLogin(HttpServletRequest request, Model model) {
+    Object toLogin(HttpServletRequest request) {
         String userName = request.getParameter("user_name");
         String password = request.getParameter("password");
         User user = service.checkUser(userName, password);
@@ -53,7 +53,7 @@ public class UserController {
     }
 
     @RequestMapping("/logout")
-    public String toLogout(HttpServletRequest request, Model model) {
+    public String toLogout(HttpServletRequest request) {
         request.getSession().removeAttribute("User");
         return "/";
     }

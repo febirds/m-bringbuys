@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="editmode" lang="zh">
+<html class="editmode" lang="zh" xmlns="http://java.sun.com/jsf/html">
 <head prefix="og: http://ogp.me/ns#">
     <!--[if IE]>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
@@ -13,10 +13,10 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/public/amazeui/assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="/public/wysihtml/css/style.css">
+    <link rel="stylesheet" href="/public/wysihtml/css/main.css">
 </head>
 
-<body style="overflow-x: hidden">
+<body>
 <header class="am-topbar"><h1 class="am-topbar-brand"><a href="#">媒体内容</a></h1>
     <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
             data-am-collapse="{target: '#doc-topbar-collapse'}"> <span
@@ -45,30 +45,17 @@
         </div>
     </div>
 </header>
+<body>
 <div class="bring-am-g am-g">
-    <div style="height: 100px" class="am-u-lg-2"></div>
-    <#include "text.ftl">
-    <div style="height: 100px" class="am-u-lg-2"></div>
-    <input type="hidden" name="id" value="${id!''}">
 </div>
+<input type="hidden" name="id" value="${id!''}">
 
 <script type="text/javascript" charset="utf-8" src="/js/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="/public/amazeui/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="/public/wysihtml/dist/wysihtml-toolbar.js"></script>
 <script type="text/javascript" charset="utf-8" src="/public/wysihtml/parser_rules/parse_rule.js"></script>
 <script type="text/javascript" charset="utf-8" src="/public/wysihtml/dist/main.js"></script>
-
-<#--<script type="text/javascript" charset="utf-8" src="/public/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="/public/ueditor/ueditor.all.js"></script>
-<script type="text/javascript" charset="utf-8" src="/public/ueditor/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript" charset="utf-8">
-    $(function(){
-        var ue = UE.getEditor('editor');
-        ue.ready(function() {
-            ue.setContent('${m.content!''}');
-        });
-    });
-</script>-->
 <script type="text/javascript" charset="utf-8" src="/js/core.js"></script>
+<script type="text/javascript" charset="utf-8" src="/public/dragdrop/drag-drop.js"></script>
 </body>
 </html>

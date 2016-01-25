@@ -51,5 +51,7 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
-
+	<beans:bean id="block" class="cn.org.rapid_framework.freemarker.directive.BlockDirective" />
+	<beans:bean id="override" class="cn.org.rapid_framework.freemarker.directive.OverrideDirective" />
+	<beans:bean id="extends" class="cn.org.rapid_framework.freemarker.directive.ExtendsDirective" />
 </beans:beans>

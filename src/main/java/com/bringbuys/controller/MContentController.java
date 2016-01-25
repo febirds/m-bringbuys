@@ -45,6 +45,8 @@ public class MContentController {
         try {
             String title = request.getParameter("title");
             String content = request.getParameter("content");
+            String left = request.getParameter("left");
+            String top = request.getParameter("top");
             String id = request.getParameter("id");
             User user = (User) request.getSession().getAttribute("User");
             Date ctime = null;
@@ -63,11 +65,11 @@ public class MContentController {
                 mContent.setCtime(ctime);
                 mContent.setUserName(user.getUserName());
             }
+            mContent.setTitle(title);
+            mContent.setContent(this.renderer(content.split(","), left.split(","), top.split(",")));
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("m", mContent);
             this.geneHtmlFile(request, "content.ftl", map, path, Base64.getBase64(path + ctime.getTime()) + ".html");
-            mContent.setTitle(title);
-            mContent.setContent(content);
             contentService.saveMContent(mContent);
             object.put("success", true);
         } catch (RuntimeException e) {
@@ -77,6 +79,27 @@ public class MContentController {
         return object;
     }
 
+    private String renderer(String[] contents, String[] lefts, String[] tops) {
+        Template widget = null;
+        String widgetHtml = "";
+        Map<String, Object> map = new HashMap<String, Object>();
+        Writer out = new StringWriter(2048);
+        try {
+            for (int i = 0; i < contents.length; i++) {
+                map.put("content", contents[i]);
+                map.put("left", lefts.length>i?"left:"+lefts[i]+";":"");
+                map.put("top", tops.length>i?"top:"+tops[i]+";":"");
+                widget = getFreeMarkerCFG().getTemplate("widget.ftl");
+                widget.process(map, out);
+                widgetHtml += out.toString();
+            }
+        } catch (TemplateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return widgetHtml;
+    }
 
     private boolean geneHtmlFile(HttpServletRequest request, String templateFileName, Map propMap,
                                  String htmlFilePath, String htmlFileName) {

@@ -1,34 +1,34 @@
 ;(function($) {
     'use strict';
 
-    var initEditor = function() {
-        window.editor = new wysihtml5.Editor(document.querySelector('#textarea'), {
-            name: 'editor',
+    var initEditor = function(id, tid, sid, bid) {
+        window.editor = new wysihtml5.Editor(document.querySelector("#"+tid), {
+            name: id,
             style: false,
-            toolbar: "toolbar",
+            toolbar: bid,
             parserRules:  wysihtml5ParserRules,
-            stylesheets: ['/stylesheets/main.min.css']
+            stylesheets: ['/public/wysihtml/css/main.css']
         });
 
-        $('[data-behavior="showstyles"]').on('click', function(event) {
+        $("#"+bid).find('[data-behavior="showstyles"]').on('click', function(event) {
             event.stopPropagation();
-            $('[data-behavior="showstyles"] + .edy-tb-stylemenu').toggle();
+            $("#"+bid+' [data-behavior="showstyles"] + .edy-tb-stylemenu').toggle();
             $('body').on('click', styleToolSideClick);
         });
 
-        $('[data-behavior="showfontsizes"]').on('click', function(event) {
+        $("#"+bid).find('[data-behavior="showfontsizes"]').on('click', function(event) {
             event.stopPropagation();
-            $('[data-behavior="showfontsizes"] + .edy-tb-stylemenu').toggle();
+            $("#"+bid+' [data-behavior="showfontsizes"] + .edy-tb-stylemenu').toggle();
             $('body').on('click', fontSizeToolSideClick);
         });
 
-        $('[data-behavior="foreColor"]').on('click', function(event) {
+        $("#"+bid).find('[data-behavior="foreColor"]').on('click', function(event) {
             event.stopPropagation();
-            $('[data-behavior="foreColor"] + .edy-tb-color-modal').toggle();
+            $("#"+bid).find('[data-behavior="foreColor"] + .edy-tb-color-modal').toggle();
             $('body').on('click', colorToolSideClick);
         });
 
-        $('[data-wysihtml5-command="foreColor"]').on('click', function(event) {
+        $("#"+bid).find('[data-wysihtml5-command="foreColor"]').on('click', function(event) {
             event.stopPropagation();
             var colorValue = $(event.target).data('value');
             if (colorValue) {
@@ -41,40 +41,40 @@
         });
 
         var dialog = new wysihtml5.toolbar.Dialog(
-            document.querySelector("[data-wysihtml5-command='createLink']"),
-            document.querySelector("[data-wysihtml5-dialog='createLink']")
+            $("#"+bid+" [data-wysihtml5-command='createLink']"),
+            $("#"+bid+" [data-wysihtml5-dialog='createLink']")
         );
         dialog.observe("cancel", function(attributes) {
             console.log("!", attributes);
         });
 
-        $('[data-behavior="createLink"]').on('click', function(event) {
+        $("#"+bid).find('[data-behavior="createLink"]').on('click', function(event) {
             $('body').on('click', linkToolSideClick);
         });
 
-        $('[data-behavior="showSource"]').on('click', function(event) {
+        $("#"+bid).find('[data-behavior="showSource"]').on('click', function(event) {
             var HTML = $.trim(editor.getValue());
-            $('#source textarea').val(HTML);
-            $('#editor, #source').toggle();
+            $("#"+sid + ' textarea').val(HTML);
+            $("#"+id+', #'+sid).toggle();
         });
 
-        $('#source .editor-source-btns .cancel').on('click', function(event) {
+        $("#"+sid+' .editor-source-btns .cancel').on('click', function(event) {
             event.preventDefault();
-            $('#editor, #source').toggle();
+            $("#"+id+', #'+sid).toggle();
         });
 
-        $('#source .editor-source-btns .update').on('click', function(event) {
+        $(sid+' .editor-source-btns .update').on('click', function(event) {
             event.preventDefault();
-            var HTML = $('#source textarea').val();
+            var HTML = $(sid + ' textarea').val();
             editor.setValue(HTML);
-            $('#editor, #source').toggle();
+            $("#"+id+', #'+sid).toggle();
         });
 
         var styleToolSideClick = function(event) {
             event.stopPropagation();
             var $target = $(event.target);
-            if (!(document.querySelector('[data-behavior="showstyles"] + .edy-tb-stylemenu').contains(event.target))) {
-                $('[data-behavior="showstyles"] + .edy-tb-stylemenu').hide();
+            if (!($("#"+bid).find('[data-behavior="showstyles"] + .edy-tb-stylemenu')[0].contains(event.target))) {
+                $("#"+bid).find('[data-behavior="showstyles"] + .edy-tb-stylemenu').hide();
                 $('body').off('click', styleToolSideClick);
             }
         };
@@ -82,8 +82,8 @@
         var fontSizeToolSideClick = function(event) {
             event.stopPropagation();
             var $target = $(event.target);
-            if (!(document.querySelector('[data-behavior="showfontsizes"] + .edy-tb-stylemenu').contains(event.target))) {
-                $('[data-behavior="showfontsizes"] + .edy-tb-stylemenu').hide();
+            if (!($("#"+bid).find('[data-behavior="showfontsizes"] + .edy-tb-stylemenu')[0].contains(event.target))) {
+                $("#"+bid).find('[data-behavior="showfontsizes"] + .edy-tb-stylemenu').hide();
                 $('body').off('click', fontSizeToolSideClick);
             }
         };
@@ -91,8 +91,8 @@
         var linkToolSideClick = function(event) {
             event.stopPropagation();
             var $target = $(event.target);
-            if (!(document.querySelector('[data-wysihtml5-command="createLink"] + .edy-popover').contains(event.target))) {
-                $('[data-wysihtml5-command="createLink"] + .edy-popover').hide();
+            if (!($("#"+bid).find('[data-wysihtml5-command="createLink"] + .edy-popover')[0].contains(event.target))) {
+                $("#"+bid).find('[data-wysihtml5-command="createLink"] + .edy-popover').hide();
                 $('body').off('click', linkToolSideClick);
             }
         };
@@ -100,8 +100,8 @@
         var colorToolSideClick = function(event) {
             event.stopPropagation();
             var $target = $(event.target);
-            if (!(document.querySelector('[data-behavior="foreColor"] + .edy-tb-color-modal').contains(event.target))) {
-                $('[data-behavior="foreColor"] + .edy-tb-color-modal').hide();
+            if (!($("#"+bid).find('[data-behavior="foreColor"] + .edy-tb-color-modal')[0].contains(event.target))) {
+                $("#"+bid).find('[data-behavior="foreColor"] + .edy-tb-color-modal').hide();
                 $('body').off('click', colorToolSideClick);
             }
         };
@@ -148,7 +148,7 @@
 
         var setColorToolBackground = function() {
             var foreColorStyle = editor.composer.commands.stateValue('foreColorStyle');
-            $('[data-behavior="foreColor"] svg circle').css('fill', foreColorStyle || 'transparent');
+            $("#"+bid+' [data-behavior="foreColor"] svg circle').css('fill', foreColorStyle || 'transparent');
         };
 
         var setColorToolForeground = function() {
@@ -156,10 +156,10 @@
                 lightness = calculateColorLightness(foreColorStyle),
                 color = (lightness < 0.6) ? 'rgba(255,255,255,.9)' : 'rgba(0,0,0,.9)';
 
-            $('[data-behavior="foreColor"] svg path').eq(0).css('color', color);
+            $("#"+bid+' [data-behavior="foreColor"] svg path').eq(0).css('color', color);
         };
 
-        $('#textarea').on('mouseup blur', function(event) {
+        $("#"+tid).on('mouseup blur', function(event) {
             editor.selBookmark = editor.composer.selection.getBookmark();
             setTimeout(function() {
                 setColorToolBackground();

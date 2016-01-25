@@ -11,9 +11,12 @@ CREATE TABLE `mcontent` (
   `linkurl` varchar(200) DEFAULT NULL,
   `ctime` datetime DEFAULT NULL,
   `isUse` tinyint(4) DEFAULT '1',
-  `nick_name` varchar(45) DEFAULT NULL,
+  `auther` varchar(45) DEFAULT NULL,
+  `title` varchar(200) DEFAULT NULL,
+  `content` text,
+  `utime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(45) DEFAULT NULL,
