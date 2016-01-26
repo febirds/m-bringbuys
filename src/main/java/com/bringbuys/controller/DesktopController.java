@@ -29,10 +29,11 @@ public class DesktopController {
         ModelAndView mv = new ModelAndView();
         String mid = request.getParameter("m");
         if (mid != null) {
-            MContent mContent = contentService.getMcontent(Integer.parseInt(mid));
-            mv.addObject("m" , mContent);
+            MContent mContent = contentService.getMContent(mid);
+            mv.setViewName("/protected/"+mContent.getLinkurl());
+        } else {
+            mv.setViewName("desktop");
         }
-        mv.setViewName("desktop");
         return mv;
     }
 

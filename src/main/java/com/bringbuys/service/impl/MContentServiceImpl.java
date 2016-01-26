@@ -17,13 +17,14 @@ public class MContentServiceImpl implements IMContentService{
     private MContentMapper dao;
 
     public int saveMContent(MContent content) {
-        if (content.getId()>0) {
-            
+        if (content.getId() != null) {
+            return dao.updateMContent(content);
+        } else {
+            return dao.insertMContent(content);
         }
-        return dao.insertMContent(content);
     }
 
-    public MContent getMcontent(int id) {
+    public MContent getMContent(String id) {
         return dao.selectMContentById(id);
     }
 }

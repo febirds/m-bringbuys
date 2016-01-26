@@ -49,11 +49,11 @@
 <div class="am-g">
     <div class="am-u-lg-2 bring-broder-height"></div>
     <div class="am-u-lg-8">
-        ${m.content!""}
+    ${m.content!""}
     </div>
     <div class="am-u-lg-2 bring-broder-height"></div>
 </div>
-<input type="hidden" name="id" value="${id!''}">
+<input type="hidden" name="id" value="${m.id!''}">
 
 <script type="text/javascript" charset="utf-8" src="/js/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="/public/amazeui/assets/js/amazeui.min.js"></script>

@@ -9,10 +9,17 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="alternate icon" type="image/png" href="/i/favicon.ico">
-    <link rel="stylesheet" href="/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="/public/amazeui/assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
     <link rel="stylesheet" href="/public/wysihtml/css/main.css">
 </head>
 <body>
-${m.content!""}
+<div class="am-g">
+    <div class="am-u-lg-2 bring-broder-height"></div>
+    <div class="am-u-lg-8">
+        ${m.content!""}
+    </div>
+    <div class="am-u-lg-2 bring-broder-height"></div>
+</div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-$am-g-margin : 80px;
+$am-g-margin : 40px;
 $am-g-padding : 80px;
 $broder-height : 200px;
 
@@ -12,8 +12,6 @@ $broder-height : 200px;
 
 .bring-am-g {
     margin-top: $am-g-margin!important;
-    margin-bottom: $am-g-margin!important;
-    padding: $am-g-padding $am-g-padding $am-g-padding $am-g-padding!important;
 }
 
 .bring-dragable {

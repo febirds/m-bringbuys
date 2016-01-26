@@ -9,6 +9,8 @@ public interface MContentMapper {
 
     int insertMContent(MContent content);
 
-    MContent selectMContentById(int id);
+    int updateMContent(MContent content);
+
+    MContent selectMContentById(String id);
 
 }

@@ -19,6 +19,7 @@
 	<resources mapping="/js/**" location="/js/"/>
 	<resources mapping="/public/**" location="/public/"/>
 	<resources mapping="/static/**" location="/static/"/>
+	<resources mapping="/desktop/**" location="/desktop/"/>
 
 	<interceptors>
 		<interceptor>
@@ -37,9 +38,9 @@
 		<beans:property name="contentType" value="text/html;charset=UTF-8"></beans:property>
 	</beans:bean>
 
-	<beans:bean id="freemarkerConfig"
-		  class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-		<beans:property name="templateLoaderPath" value="/WEB-INF/views/" />
+	<beans:bean id="customFreeMarkerConfigurer"
+		  class="com.bringbuys.common.CustomFreeMarkerConfigurer">
+		<beans:property name="templateLoaderPath" value="/WEB-INF/views/"></beans:property>
 		<beans:property name="freemarkerSettings">
 			<beans:props>
 				<beans:prop key="template_update_delay">0</beans:prop>

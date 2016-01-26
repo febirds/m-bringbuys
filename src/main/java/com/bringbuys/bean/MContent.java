@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class MContent {
 
-    private int id;
+    private String id;
     private String title;
     private String linkurl;
     private Date ctime;
@@ -57,11 +57,11 @@ public class MContent {
         this.auther = auther;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

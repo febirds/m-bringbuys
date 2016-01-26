@@ -9,6 +9,6 @@ public interface IMContentService {
 
     int saveMContent(MContent content);
 
-    MContent getMcontent(int id);
+    MContent getMContent(String id);
 
 }

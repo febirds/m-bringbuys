@@ -2,29 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bringbuys.dao.MContentMapper" >
   <resultMap id="BaseResultMap" type="com.bringbuys.bean.MContent" >
-    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="auther" property="auther" jdbcType="VARCHAR" />
     <result column="linkurl" property="linkurl" jdbcType="VARCHAR" />
     <result column="ctime" property="ctime" jdbcType="DATE" />
     <result column="isUse" property="isUse" jdbcType="INTEGER" />
-    <result column="content" property="content" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, user_name, linkurl, auther, ctime, isUse
   </sql>
-  <sql id="full_Column_List" >
-    id, user_name, linkurl, auther, ctime, isUse, content
-  </sql>
   <insert id="insertMContent" parameterType="com.bringbuys.bean.MContent">
-    insert into mcontent (id,  user_name, auther, linkurl, ctime, utime, content)
-    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{auther,jdbcType=VARCHAR}, #{linkurl,jdbcType=VARCHAR},
-      #{ctime,jdbcType=VARCHAR}, #{utime,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR})
+    insert into mcontent (id,  user_name, auther, linkurl, ctime, utime)
+    values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{auther,jdbcType=VARCHAR}, #{linkurl,jdbcType=VARCHAR},
+      #{ctime,jdbcType=VARCHAR}, #{utime,jdbcType=VARCHAR})
   </insert>
-  <select id="selectMContentById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectMContentById" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select
-    <include refid="full_Column_List" />
+    <include refid="Base_Column_List" />
     from mcontent
     where id = #{id} and isUse=1
   </select>
+  <update id="updateMContent" parameterType="com.bringbuys.bean.MContent">
+    update mcontent set utime=#{utime,jdbcType=VARCHAR}, isUse=#{isUse,jdbcType=INTEGER}
+    where id = #{id}
+  </update>
 </mapper>

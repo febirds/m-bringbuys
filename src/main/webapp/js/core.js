@@ -6,17 +6,19 @@ $(function () {
     var title = $("input[name='title']").val();
 
     $("#bring-save").bind("click", function () {
-        var content="", left="", top="";
+        var content=[], left=[], top=[], type=[];
         $.each($(".bring-get"), function(k, v){
-            content += "$" + $(v).html();
-            left += "$" + $(v).parent().parent().css("left");
-            top += "$" + $(v).parent().parent().css("top");
+            content.push($(v).html());
+            left.push($(v).parent().parent().css("left"));
+            top.push($(v).parent().parent().css("top"));
+            type.push($(v).data("type"));
         });
         $.post("/content/toHtml",
             {
-                content: content.substring(1),
-                left: left.substring(1),
-                top: top.substring(1),
+                content: content,
+                left: left,
+                top: top,
+                type: type,
                 id: id,
                 title: title
             },
@@ -33,7 +35,6 @@ $(function () {
                 if (response.success) {
                     $(".bring-am-g").last().append(response.textWidget);
                     var cloneObj = $(".bring-am-g").last().clone();
-                    $(document).resize();
                 }
             });
     });
