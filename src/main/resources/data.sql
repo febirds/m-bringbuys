@@ -6,17 +6,16 @@ CREATE TABLE `admin_user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE `mcontent` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(64) NOT NULL,
   `user_name` varchar(45) DEFAULT NULL,
   `linkurl` varchar(200) DEFAULT NULL,
   `ctime` datetime DEFAULT NULL,
   `isUse` tinyint(4) DEFAULT '1',
   `auther` varchar(45) DEFAULT NULL,
   `title` varchar(200) DEFAULT NULL,
-  `content` text,
   `utime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(45) DEFAULT NULL,
