@@ -28,7 +28,7 @@
             <li class="am-active"><a href="#">首页</a></li>
             <li><a href="#">项目</a></li>
             <li><a id="bring-text-add" href="#">新建文本</a></li>
-            <li><a id="bring-image-manage" data-am-collapse="{target: '#manage_image'}"
+            <li><a id="bring-image-manage"
                    href="javascript:void(0)">图片库</a></li>
         </ul>
         <form class="am-topbar-form am-topbar-left am-form-inline" role="search">

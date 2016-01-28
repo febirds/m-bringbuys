@@ -2,10 +2,7 @@ package com.bringbuys.controller;
 
 import com.bringbuys.bean.MContent;
 import com.bringbuys.service.IMContentService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,7 +19,6 @@ public class DesktopController {
 
     @Resource
     private IMContentService contentService;
-    private final Logger logger = LoggerFactory.getLogger(MContentController.class);
 
     @RequestMapping("")
     public Object toDesktop(HttpServletRequest request) {

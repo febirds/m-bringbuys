@@ -20,6 +20,7 @@
 	<resources mapping="/public/**" location="/public/"/>
 	<resources mapping="/static/**" location="/static/"/>
 	<resources mapping="/desktop/**" location="/desktop/"/>
+	<resources mapping="/upload/**" location="/upload/"/>
 
 	<interceptors>
 		<interceptor>

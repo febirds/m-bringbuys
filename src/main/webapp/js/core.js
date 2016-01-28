@@ -43,4 +43,21 @@ $(function () {
 
     });
 
+    $("#bring-image-manage").bind("click", function(){
+        if ($("#manage_image").hasClass("am-in")) {
+            $("#manage_image").collapse("close");
+        } else {
+            $("#manage_image").collapse("open");
+        }
+        $(window).resize();
+    });
+
+    $(".imgWrap").bind("mouseover", function(){
+        $(".file-panel").height(30);
+    });
+
+    $(".imgWrap").bind("mouseout", function(){
+        $(".file-panel").height(0);
+    });
+
 });

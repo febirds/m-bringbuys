@@ -297,6 +297,7 @@
                     $info.remove();
                     $prgress.css('display', 'block');
                 } else if ( cur === 'complete' ) {
+                    debugger;
                     $li.append( '<span class="success"></span>' );
                 }
 

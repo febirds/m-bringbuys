@@ -12,10 +12,10 @@
     <link rel="shortcut icon" href="/images/i/favicon.ico" type="image/ico">
     <link rel="shortcut icon" href="/images/i/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/public/amazeui/assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="/public/wysihtml/css/main.css">
     <link rel="stylesheet" href="/public/webuploader/css/webuploader.css">
     <link rel="stylesheet" href="/public/webuploader/examples/image-upload/style.css">
+    <link rel="stylesheet" href="/public/amazeui/assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="/public/wysihtml/css/main.css">
 </head>
 
 <body>
@@ -28,8 +28,7 @@
             <li class="am-active"><a href="#">首页</a></li>
             <li><a href="#">项目</a></li>
             <li><a id="bring-text-add" href="#">新建文本</a></li>
-            <li><a id="bring-image-manage" data-am-collapse="{target: '#manage_image'}"
-                   href="javascript:void(0)">图片库</a></li>
+            <li><a id="bring-image-manage" href="javascript:void(0)">图片库</a></li>
         </ul>
         <form class="am-topbar-form am-topbar-left am-form-inline" role="search">
             <div class="am-form-group"><input type="text" class="am-form-field am-input-sm" placeholder="搜索"></div>

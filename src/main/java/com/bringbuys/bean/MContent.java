@@ -8,6 +8,7 @@ import java.util.Date;
 public class MContent {
 
     private String id;
+    private int projectId;
     private String title;
     private String linkurl;
     private Date ctime;
@@ -16,6 +17,14 @@ public class MContent {
     private String userName;
     private String auther;
     private String content;
+
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
+    }
 
     public Date getUtime() {
         return utime;

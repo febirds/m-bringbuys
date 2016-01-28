@@ -45,6 +45,7 @@ public class MContentController {
         JSONObject object = new JSONObject();
         try {
             String title = request.getParameter("title");
+            String projectId = request.getParameter("projectId");
             String[] content = request.getParameterValues("content[]");
             String[] left = request.getParameterValues("left[]");
             String[] top = request.getParameterValues("top[]");
@@ -71,6 +72,7 @@ public class MContentController {
                 mContent.setAuther(user.getNickName());
                 mContent.setCtime(ctime);
                 mContent.setUserName(user.getUserName());
+                mContent.setProjectId(projectId!=null&&!"".equals(projectId)?Integer.parseInt(projectId):0);
             }
             String[] htmls = this.renderer(mContent.getId(), content, left, top, type);
             mContent.setTitle(title);
