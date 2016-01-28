@@ -55,14 +55,16 @@ public class MContentController {
             String path = MD5.GetMD5Code(user.getUserName() == null ? "public" : user.getUserName());
             String linkurl = "";
             MContent mContent = null;
+            boolean isUpdate = false;
             if (id != null && !"".equals(id)) {
+                isUpdate = true;
                 mContent = contentService.getMContent(id);
                 ctime = mContent.getCtime();
                 mContent.setUtime(new Date());
                 mContent.setIsUse(1);
             } else {
                 ctime = new Date();
-                linkurl = Base64.getBase64(path + ctime.getTime()) + ".html";
+                linkurl = path + Base64.getBase64(path + ctime.getTime()) + ".html";
                 mContent = new MContent();
                 mContent.setId(UUIDGenerator.getUUID());
                 mContent.setLinkurl(linkurl);
@@ -70,7 +72,7 @@ public class MContentController {
                 mContent.setCtime(ctime);
                 mContent.setUserName(user.getUserName());
             }
-            String[] htmls = this.renderer(ctime, content, left, top, type);
+            String[] htmls = this.renderer(mContent.getId(), content, left, top, type);
             mContent.setTitle(title);
             mContent.setContent(htmls[0]);
             Map<String, Object> map = new HashMap<String, Object>();
@@ -81,7 +83,7 @@ public class MContentController {
             m.setContent(htmls[1]);
             editMap.put("m", m);
             this.geneHtmlFile(request, "content_editable.ftl", map, "/desktop/" + path, Base64.getBase64(path + ctime.getTime()) + ".html");
-            contentService.saveMContent(mContent);
+            contentService.saveMContent(mContent, isUpdate);
             object.put("success", true);
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -90,7 +92,7 @@ public class MContentController {
         return object;
     }
 
-    private String[] renderer(Date ctime, String[] contents, String[] lefts, String[] tops, String[] types) {
+    private String[] renderer(String uuid, String[] contents, String[] lefts, String[] tops, String[] types) {
         String[] htmls = new String[2];
         Template widget = null, widgetEditable = null;
         Map<String, Object> map = new HashMap<String, Object>();
@@ -99,9 +101,9 @@ public class MContentController {
         try {
             for (int i = 0; i < types.length; i++) {
                 map.put("content", contents[i]);
-                map.put("left", lefts.length > i ? "left:" + lefts[i] + ";" : "");
-                map.put("top", tops.length > i ? "top:" + tops[i] + ";" : "");
-                map.put("uuid", ctime.getTime() + i + "");
+                map.put("left", lefts.length > i ? "margin-left:" + lefts[i] + ";" : "");
+                map.put("top", tops.length > i ? "margin-top:" + tops[i] + ";" : "");
+                map.put("uuid", uuid + i + "");
                 widget = getFreeMarkerCFG().getTemplate("widget.ftl");
                 widgetEditable = getFreeMarkerCFG().getTemplate(types[i] + ".ftl");
                 widget.process(map, out);

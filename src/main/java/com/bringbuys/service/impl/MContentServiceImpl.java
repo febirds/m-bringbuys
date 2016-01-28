@@ -16,8 +16,8 @@ public class MContentServiceImpl implements IMContentService{
     @Resource
     private MContentMapper dao;
 
-    public int saveMContent(MContent content) {
-        if (content.getId() != null) {
+    public int saveMContent(MContent content, boolean isUpdate) {
+        if (isUpdate) {
             return dao.updateMContent(content);
         } else {
             return dao.insertMContent(content);

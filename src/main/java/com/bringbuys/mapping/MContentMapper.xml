@@ -21,10 +21,10 @@
     select
     <include refid="Base_Column_List" />
     from mcontent
-    where id = #{id} and isUse=1
+    where id = #{id,jdbcType=VARCHAR} and isUse=1
   </select>
   <update id="updateMContent" parameterType="com.bringbuys.bean.MContent">
     update mcontent set utime=#{utime,jdbcType=VARCHAR}, isUse=#{isUse,jdbcType=INTEGER}
-    where id = #{id}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

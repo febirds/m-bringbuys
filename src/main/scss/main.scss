@@ -1,17 +1,39 @@
-$am-g-margin : 40px;
-$am-g-padding : 80px;
-$broder-height : 200px;
+$margin : 20px;
+$am-g-padding : 30px;
+$border-height : 1px;
+$am-g-widget : 20px;
+$border: 2px solid #ccc;
+
+.bring-nav {
+    margin-top: $margin!important;
+    margin-bottom: $margin!important;
+}
 
 .bring-hide {
     display: none;
 }
 
 .bring-broder-height {
-    height: $broder-height;
+    height: $border-height;
 }
 
-.bring-am-g {
-    margin-top: $am-g-margin!important;
+.bring-content {
+    margin-top: $margin!important;
+    margin-bottom: $margin!important;
+    padding: $am-g-padding, $am-g-padding, $am-g-padding, $am-g-padding!important;
+    height: 830px;
+    overflow: auto;
+    border: $border;
+}
+
+.bring-content-clear {
+    margin-top: $margin!important;
+    margin-bottom: $margin!important;
+    padding: $am-g-padding, $am-g-padding, $am-g-padding, $am-g-padding!important;
+}
+
+.bring-widget {
+    margin-top: $am-g-widget!important;
 }
 
 .bring-dragable {
@@ -22,4 +44,8 @@ $broder-height : 200px;
     width: 100%;
     height: 10px;
     cursor: pointer;
+}
+
+.bring-topbar {
+    margin-left: 32%;
 }

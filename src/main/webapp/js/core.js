@@ -33,10 +33,14 @@ $(function () {
         $.post("/widget/text", null,
             function (response) {
                 if (response.success) {
-                    $(".bring-am-g").last().append(response.textWidget);
+                    $(".bring-content").last().append(response.textWidget);
                     var cloneObj = $(".bring-am-g").last().clone();
                 }
             });
+    });
+
+    $(".bring-content").bind("click", function(){
+
     });
 
 });

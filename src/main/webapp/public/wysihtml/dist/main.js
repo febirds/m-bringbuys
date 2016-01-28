@@ -2,7 +2,7 @@
     'use strict';
 
     var initEditor = function(id, tid, sid, bid) {
-        window.editor = new wysihtml5.Editor(document.querySelector("#"+tid), {
+        var editor = new wysihtml5.Editor(document.querySelector("#"+tid), {
             name: id,
             style: false,
             toolbar: bid,
@@ -13,19 +13,19 @@
         $("#"+bid).find('[data-behavior="showstyles"]').on('click', function(event) {
             event.stopPropagation();
             $("#"+bid+' [data-behavior="showstyles"] + .edy-tb-stylemenu').toggle();
-            $('body').on('click', styleToolSideClick);
+            $("#"+bid).on('click', styleToolSideClick);
         });
 
         $("#"+bid).find('[data-behavior="showfontsizes"]').on('click', function(event) {
             event.stopPropagation();
             $("#"+bid+' [data-behavior="showfontsizes"] + .edy-tb-stylemenu').toggle();
-            $('body').on('click', fontSizeToolSideClick);
+            $("#"+bid).on('click', fontSizeToolSideClick);
         });
 
         $("#"+bid).find('[data-behavior="foreColor"]').on('click', function(event) {
             event.stopPropagation();
             $("#"+bid).find('[data-behavior="foreColor"] + .edy-tb-color-modal').toggle();
-            $('body').on('click', colorToolSideClick);
+            $("#"+bid).on('click', colorToolSideClick);
         });
 
         $("#"+bid).find('[data-wysihtml5-command="foreColor"]').on('click', function(event) {
@@ -49,7 +49,7 @@
         });
 
         $("#"+bid).find('[data-behavior="createLink"]').on('click', function(event) {
-            $('body').on('click', linkToolSideClick);
+            $("#"+bid).on('click', linkToolSideClick);
         });
 
         $("#"+bid).find('[data-behavior="showSource"]').on('click', function(event) {
@@ -75,7 +75,7 @@
             var $target = $(event.target);
             if (!($("#"+bid).find('[data-behavior="showstyles"] + .edy-tb-stylemenu')[0].contains(event.target))) {
                 $("#"+bid).find('[data-behavior="showstyles"] + .edy-tb-stylemenu').hide();
-                $('body').off('click', styleToolSideClick);
+                $("#"+bid).off('click', styleToolSideClick);
             }
         };
 
@@ -84,7 +84,7 @@
             var $target = $(event.target);
             if (!($("#"+bid).find('[data-behavior="showfontsizes"] + .edy-tb-stylemenu')[0].contains(event.target))) {
                 $("#"+bid).find('[data-behavior="showfontsizes"] + .edy-tb-stylemenu').hide();
-                $('body').off('click', fontSizeToolSideClick);
+                $("#"+bid).off('click', fontSizeToolSideClick);
             }
         };
 
@@ -93,7 +93,7 @@
             var $target = $(event.target);
             if (!($("#"+bid).find('[data-wysihtml5-command="createLink"] + .edy-popover')[0].contains(event.target))) {
                 $("#"+bid).find('[data-wysihtml5-command="createLink"] + .edy-popover').hide();
-                $('body').off('click', linkToolSideClick);
+                $("#"+bid).off('click', linkToolSideClick);
             }
         };
 
@@ -102,7 +102,7 @@
             var $target = $(event.target);
             if (!($("#"+bid).find('[data-behavior="foreColor"] + .edy-tb-color-modal')[0].contains(event.target))) {
                 $("#"+bid).find('[data-behavior="foreColor"] + .edy-tb-color-modal').hide();
-                $('body').off('click', colorToolSideClick);
+                $("#"+bid).off('click', colorToolSideClick);
             }
         };
 
@@ -148,7 +148,7 @@
 
         var setColorToolBackground = function() {
             var foreColorStyle = editor.composer.commands.stateValue('foreColorStyle');
-            $("#"+bid+' [data-behavior="foreColor"] svg circle').css('fill', foreColorStyle || 'transparent');
+            $("#"+bid).find('[data-behavior="foreColor"] svg circle').css('fill', foreColorStyle || 'transparent');
         };
 
         var setColorToolForeground = function() {
@@ -156,7 +156,7 @@
                 lightness = calculateColorLightness(foreColorStyle),
                 color = (lightness < 0.6) ? 'rgba(255,255,255,.9)' : 'rgba(0,0,0,.9)';
 
-            $("#"+bid+' [data-behavior="foreColor"] svg path').eq(0).css('color', color);
+            $("#"+bid).find('[data-behavior="foreColor"] svg path').eq(0).css('color', color);
         };
 
         $("#"+tid).on('mouseup blur', function(event) {
@@ -252,7 +252,7 @@
 
         $(window).on('scroll', onScroll);
 
-        $('body').on('load', setTimeout(function() {
+        $("#"+bid).on('load', setTimeout(function() {
             $('.header').removeClass('top middle bottom').addClass(getHeaderClass());
         }, 0));
     };

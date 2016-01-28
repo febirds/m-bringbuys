@@ -7,7 +7,7 @@ import com.bringbuys.bean.MContent;
  */
 public interface IMContentService {
 
-    int saveMContent(MContent content);
+    int saveMContent(MContent content, boolean isUpdate);
 
     MContent getMContent(String id);
 

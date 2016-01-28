@@ -16,7 +16,7 @@
 <body>
 <div class="am-g">
     <div class="am-u-lg-2 bring-broder-height"></div>
-    <div class="am-u-lg-8">
+    <div class="am-u-lg-8 bring-content-clear">
         ${m.content!""}
     </div>
     <div class="am-u-lg-2 bring-broder-height"></div>
