@@ -1,12 +1,27 @@
 $margin : 20px;
 $am-g-padding : 30px;
 $border-height : 1px;
-$am-g-widget : 20px;
+$am-g-widget : 50px;
 $border: 2px solid #ccc;
+$container-color : #F2F2F2;
+$font : "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","WenQuanYi Micro Hei",sans-serif;
+$form-control-height : auto;
+
+body {
+    font-family: $font;
+    background-color: $container-color!important;
+}
+
+.bring-control-height {
+    height: auto!important;
+}
+
+.bring-container-color {
+    background-color: $container-color!important;
+}
 
 .bring-nav {
-    margin-top: $margin!important;
-    margin-bottom: $margin!important;
+    border-radius: 0px!important;
 }
 
 .bring-hide {
@@ -18,12 +33,8 @@ $border: 2px solid #ccc;
 }
 
 .bring-content {
-    margin-top: $margin!important;
-    margin-bottom: $margin!important;
-    padding: $am-g-padding, $am-g-padding, $am-g-padding, $am-g-padding!important;
     height: 830px;
     overflow: auto;
-    border: $border;
 }
 
 .bring-content-clear {
@@ -34,6 +45,8 @@ $border: 2px solid #ccc;
 
 .bring-widget {
     margin-top: $am-g-widget!important;
+    margin-bottom: $am-g-widget!important;
+    padding: $am-g-padding, $am-g-padding, $am-g-padding, $am-g-padding!important;
 }
 
 .bring-dragable {

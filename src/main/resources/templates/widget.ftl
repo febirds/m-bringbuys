@@ -1,5 +1,5 @@
-<div  style="${left!''} ${top!''}"  class="bring-am-g am-g">
-    <div class="am-u-lg-12">
+<div  style="${left!''} ${top!''}"  class="bring-am-g row">
+    <div class="col-lg-12">
         <div>${content!''}</div>
     </div>
 </div>

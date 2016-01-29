@@ -1,7 +1,7 @@
-<div style="${left!''} ${top!''}" class="bring-am-g am-g">
-    <div class="am-u-lg-12">
-        <div class="am-g bring-widget">
-            <div id="bring-dragable_${uuid!''}" class="am-u-lg-12">
+<div style="${left!''} ${top!''}" class="bring-am-g row">
+    <div class="col-lg-12">
+        <div class="row bring-widget">
+            <div id="bring-dragable_${uuid!''}" class="col-lg-12">
                 <div class="bring-darg-anchor" id="dargAnchor_${uuid!''}"></div>
                 <div id="editor_${uuid!''}">
                     <div id="toolbar_${uuid!''}" class="bring-hide edy-tb">
@@ -306,13 +306,13 @@
                             </svg>
                         </button>
                     </div>
-                    <div id="textarea_${uuid!''}" class="am-form-field am-input-sm bring-get" data-type="text"
+                    <div id="textarea_${uuid!''}" class="form-control bring-control-height bring-get" data-type="text"
                          contenteditable="true">
                     ${content!''}
                     </div>
                 </div>
                 <div id="source_${uuid!''}" style="display: none;">
-                    <textarea name="editor-source" rows="10"></textarea>
+                    <textarea name="form-control" rows="10"></textarea>
                     <div class="editor-source-btns">
                         <a href="#" class="cancel">Cancel</a>
                         <a href="#" class="update">Update</a>
@@ -349,7 +349,6 @@
 
                 $("#bring-dragable_${uuid!''}").bind("focus mouseover", function () {
                     $("#toolbar_${uuid!''}").show();
-                    $("#textarea_${uuid!''}").focus();
                 });
 
                 $("#bring-dragable_${uuid!''}").bind("blur mouseout", function (e) {

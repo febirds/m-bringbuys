@@ -44,10 +44,10 @@ $(function () {
     });
 
     $("#bring-image-manage").bind("click", function(){
-        if ($("#manage_image").hasClass("am-in")) {
-            $("#manage_image").collapse("close");
+        if ($("#manage_image").hasClass("in")) {
+            $("#manage_image").collapse("hide");
         } else {
-            $("#manage_image").collapse("open");
+            $("#manage_image").collapse("show");
         }
         $(window).resize();
     });
